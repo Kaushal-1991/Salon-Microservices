@@ -43,10 +43,10 @@ public class SalonController {
 	}
 	
 	@GetMapping("/{salonId}")
-	public ResponseEntity<SalonResponseDto> getSalon(@PathVariable String salonId,@RequestBody SalonRequestDto salonRequestDto) {
+	public ResponseEntity<SalonResponseDto> getSalon(@PathVariable String salonId) {
 		UserDto userDto = new UserDto();
 		userDto.setId(1L);
-		SalonResponseDto salonResponseDto= salonService.getSalon(salonRequestDto,salonId,userDto);
+		SalonResponseDto salonResponseDto= salonService.getSalon(salonId,userDto);
 		return new ResponseEntity<>(salonResponseDto,HttpStatus.OK);
 	}
 	
@@ -58,15 +58,15 @@ public class SalonController {
 		return ResponseEntity.ok(salonResponseDto);
 	}
 	
-	@GetMapping("/{owner}")
-	public ResponseEntity<SalonResponseDto> getSalonByOwner(@PathVariable String salonId) {
+	@GetMapping("/owner/{ownerId}")
+	public ResponseEntity<List<SalonResponseDto>> getSalonByOwner(@PathVariable String ownerId) {
 		UserDto userDto = new UserDto();
 		userDto.setId(1L);
-		SalonResponseDto salonResponseDto= salonService.getSalonByOwnerId(userDto.getId(),userDto);
+		List<SalonResponseDto> salonResponseDto= salonService.getSalonByOwnerId(ownerId,userDto);
 		return ResponseEntity.ok(salonResponseDto);
 	}
 	
-	@GetMapping("/{search}")
+	@GetMapping("/search")
 	public ResponseEntity<List<SalonResponseDto>> searchSalons(@RequestParam("city") String city) {
 		UserDto userDto = new UserDto();
 		userDto.setId(1L);

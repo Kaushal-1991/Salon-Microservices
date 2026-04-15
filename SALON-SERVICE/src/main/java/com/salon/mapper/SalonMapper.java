@@ -8,6 +8,7 @@ import com.salon.model.Salon;
 public class SalonMapper {
     public static SalonResponseDto mapToDto(Salon salon,UserDto userDto) {
     	SalonResponseDto responseDto = new SalonResponseDto();
+    	responseDto.setId(salon.getId());;
     	responseDto.setAddress(salon.getAddress());
     	responseDto.setCity(salon.getCity());
     	responseDto.setCloseTime(salon.getCloseTime());
@@ -20,7 +21,7 @@ public class SalonMapper {
     	return responseDto;
     }
     
-    public static Salon mapToSalon(SalonRequestDto salonDto) {
+    public static Salon mapToSalon(SalonRequestDto salonDto,UserDto userDto) {
     	Salon salon = new Salon();
     	salon.setName(salonDto.getName());
     	salon.setAddress(salonDto.getAddress());
@@ -28,7 +29,7 @@ public class SalonMapper {
     	salon.setEmail(salonDto.getEmail());
     	salon.setImages(salonDto.getImages());
     	salon.setMobile(salonDto.getMobile());
-    	salon.setOwnerId(salonDto.getOwnerId());
+    	salon.setOwnerId(userDto.getId());
     	salon.setOpenTime(salonDto.getOpenTime());
     	salon.setCloseTime(salonDto.getCloseTime());
     	return salon;

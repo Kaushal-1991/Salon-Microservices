@@ -12,11 +12,11 @@ public interface SalonService {
 
 	SalonResponseDto updateSalon(SalonRequestDto salonRequestDto, String salonId,UserDto userDto);
 
-	SalonResponseDto getSalon(SalonRequestDto salonRequestDto, String salonId, UserDto userDto);
+	SalonResponseDto getSalon(String salonId, UserDto userDto);
 
 	List<SalonResponseDto> getSalons(UserDto userDto);
 
-	SalonResponseDto getSalonByOwnerId(Long id,UserDto userDto);
+	List<SalonResponseDto> getSalonByOwnerId(String ownerId,UserDto userDto);
 
 	List<SalonResponseDto> searchSalonByCity(String city, UserDto userDto);
 
